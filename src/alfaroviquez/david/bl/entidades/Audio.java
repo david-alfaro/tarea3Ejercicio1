@@ -36,7 +36,7 @@ public class Audio extends Material {
     public Audio() {
     }
 
-    public Audio(String signatura, Boolean restringido, String tema, LocalDate fechaCompra, formatoAudio formato, int duracion, String idioma) {
+    public Audio(int signatura, Boolean restringido, String tema, LocalDate fechaCompra, formatoAudio formato, int duracion, String idioma) {
         super(signatura, restringido, tema, fechaCompra);
         this.formato = formato;
         this.duracion = duracion;

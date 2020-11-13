@@ -45,7 +45,7 @@ public class Video extends Material {
     public Video() {
     }
 
-    public Video(String signatura, Boolean restringido, String tema, LocalDate fechaCompra, formatoVideo formato, int duracion, String idioma, String director) {
+    public Video(int signatura, Boolean restringido, String tema, LocalDate fechaCompra, formatoVideo formato, int duracion, String idioma, String director) {
         super(signatura, restringido, tema, fechaCompra);
         this.formato = formato;
         this.duracion = duracion;

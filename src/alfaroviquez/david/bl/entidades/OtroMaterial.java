@@ -16,7 +16,7 @@ public class OtroMaterial extends Material {
     public OtroMaterial() {
     }
 
-    public OtroMaterial(String signatura, Boolean restringido, String tema, LocalDate fechaCompra, String descripcion) {
+    public OtroMaterial(int signatura, Boolean restringido, String tema, LocalDate fechaCompra, String descripcion) {
         super(signatura, restringido, tema, fechaCompra);
         this.descripcion = descripcion;
     }

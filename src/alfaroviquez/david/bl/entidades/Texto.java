@@ -52,7 +52,7 @@ public class Texto extends Material{
     public Texto() {
     }
 
-    public Texto(String signatura, Boolean restringido, String tema, LocalDate fechaCompra, String titulo, String nombreAutor, LocalDate fechaPublicacion, int numeroPaginas, String idioma) {
+    public Texto(int signatura, Boolean restringido, String tema, LocalDate fechaCompra, String titulo, String nombreAutor, LocalDate fechaPublicacion, int numeroPaginas, String idioma) {
         super(signatura, restringido, tema, fechaCompra);
         this.titulo = titulo;
         this.nombreAutor = nombreAutor;

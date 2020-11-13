@@ -49,7 +49,7 @@ public class Gestor {
      public List<Administrativo> listarAdministrativos(){
         return Collections.unmodifiableList(this.listaAdministrativos);
     }
-     public void crearMaterialTexto (String signatura, Boolean restringido, String tema, LocalDate fechaCompra, String titulo, String nombreAutor, LocalDate fechaPublicacion, int numeroPaginas, String idioma){
+     public void crearMaterialTexto (int signatura, Boolean restringido, String tema, LocalDate fechaCompra, String titulo, String nombreAutor, LocalDate fechaPublicacion, int numeroPaginas, String idioma){
         Texto nuevoTexto = new Texto(signatura,restringido,tema,fechaCompra,titulo,nombreAutor,fechaPublicacion,numeroPaginas,idioma);
         listaTextos.add(nuevoTexto);
 
@@ -58,7 +58,7 @@ public class Gestor {
         return Collections.unmodifiableList(this.listaTextos);
      }
 
-     public void crearMaterialAudio(String signatura, Boolean restringido, String tema, LocalDate fechaCompra, String formato, int duracion, String idioma){
+     public void crearMaterialAudio(int signatura, Boolean restringido, String tema, LocalDate fechaCompra, String formato, int duracion, String idioma){
         formatoAudio tipoFormato = formatoAudio.valueOf(formato);
         Audio nuevoAudio = new Audio(signatura,restringido,tema,fechaCompra,tipoFormato,duracion,idioma);
         listaAudios.add(nuevoAudio);
@@ -68,7 +68,7 @@ public class Gestor {
         return Collections.unmodifiableList(this.listaAudios);
      }
 
-     public void crearMaterialVideo(String signatura, Boolean restringido, String tema, LocalDate fechaCompra, String formato, int duracion, String idioma, String director){
+     public void crearMaterialVideo(int signatura, Boolean restringido, String tema, LocalDate fechaCompra, String formato, int duracion, String idioma, String director){
         formatoVideo tipoFormato = formatoVideo.valueOf(formato);
         Video nuevoVideo = new Video(signatura,restringido,tema,fechaCompra,tipoFormato,duracion,idioma,director);
         listaVideos.add(nuevoVideo);
@@ -76,6 +76,15 @@ public class Gestor {
 
      public List<Video> listarVideos(){
         return Collections.unmodifiableList(this.listaVideos);
+     }
+
+     public void crearOtroMaterial(int signatura, Boolean restringido, String tema, LocalDate fechaCompra, String descripcion){
+        OtroMaterial nuevoOtro = new OtroMaterial(signatura,restringido,tema,fechaCompra,descripcion);
+        listaOtros.add(nuevoOtro);
+
+     }
+     public List<OtroMaterial>listarOtros(){
+        return Collections.unmodifiableList(this.listaOtros);
      }
 
 
