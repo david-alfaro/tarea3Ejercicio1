@@ -3,16 +3,15 @@ package alfaroviquez.david.bl.entidades;
 public class Persona {
     protected String nombre;
     protected String apellido;
+    protected int ID;
 
-    public String getID() {
+    public int getID() {
         return ID;
     }
 
-    public void setID(String ID) {
+    public void setID(int ID) {
         this.ID = ID;
     }
-
-    protected String ID;
 
     public String getNombre() {
         return nombre;
@@ -33,7 +32,7 @@ public class Persona {
     public Persona() {
     }
 
-    public Persona(String nombre, String apellido, String ID) {
+    public Persona(String nombre, String apellido, int ID) {
         this.nombre = nombre;
         this.apellido = apellido;
         this.ID = ID;

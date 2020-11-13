@@ -3,16 +3,16 @@ package alfaroviquez.david.bl.entidades;
 import java.time.LocalDate;
 
 public abstract class Material {
-    protected String signatura;
+    protected int signatura;
     protected Boolean restringido;
     protected String tema;
     protected LocalDate fechaCompra;
 
-    public String getSignatura() {
+    public int getSignatura() {
         return signatura;
     }
 
-    public void setSignatura(String signatura) {
+    public void setSignatura(int signatura) {
         this.signatura = signatura;
     }
 
@@ -43,7 +43,7 @@ public abstract class Material {
     public Material() {
     }
 
-    public Material(String signatura, Boolean restringido, String tema, LocalDate fechaCompra) {
+    public Material(int signatura, Boolean restringido, String tema, LocalDate fechaCompra) {
         this.signatura = signatura;
         this.restringido = restringido;
         this.tema = tema;

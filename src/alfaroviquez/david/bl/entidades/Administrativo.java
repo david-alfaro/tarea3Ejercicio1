@@ -25,7 +25,7 @@ public class Administrativo extends Persona {
     public Administrativo() {
     }
 
-    public Administrativo(String nombre, String apellido, String ID, tipoNombramiento nombramiento, int horasAsignadas) {
+    public Administrativo(String nombre, String apellido, int ID, tipoNombramiento nombramiento, int horasAsignadas) {
         super(nombre, apellido, ID);
         this.nombramiento = nombramiento;
         this.horasAsignadas = horasAsignadas;

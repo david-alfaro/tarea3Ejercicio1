@@ -30,7 +30,7 @@ public class Profesor extends Persona {
     public Profesor() {
     }
 
-    public Profesor(String nombre, String apellido, String ID, LocalDate fechaContratacion, tipoContrato contrato) {
+    public Profesor(String nombre, String apellido, int ID, LocalDate fechaContratacion, tipoContrato contrato) {
         super(nombre, apellido, ID);
         this.fechaContratacion = fechaContratacion;
         this.contrato = contrato;
