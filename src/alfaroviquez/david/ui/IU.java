@@ -16,9 +16,17 @@ public class IU {
         output.println("4. Listar estudiantes");
         output.println("5. Listar profesores");
         output.println("6. Listar administrativos");
-        output.println("7. Crear préstamo");
-        output.println("8. Listar préstamos");
-        output.println("9. Salir");
+        output.println("7. Registrar material de texto");
+        output.println("8. Registrar material de audio");
+        output.println("9. Registrar material de video");
+        output.println("10. Registrar otro tipo de material");
+        output.println("11. Listar material de texto");
+        output.println("12. Listar material de audio");
+        output.println("13. Listar material de video");
+        output.println("14. Listar otro tipo de material");
+        output.println("15. Crear préstamo");
+        output.println("16. Listar préstamos");
+        output.println("17. Salir");
     }
 
     public int leerNumero(){

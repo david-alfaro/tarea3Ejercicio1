@@ -1,8 +1,6 @@
 package alfaroviquez.david.controlador;
 
-import alfaroviquez.david.bl.entidades.Administrativo;
-import alfaroviquez.david.bl.entidades.Estudiante;
-import alfaroviquez.david.bl.entidades.Profesor;
+import alfaroviquez.david.bl.entidades.*;
 import alfaroviquez.david.bl.logica.Gestor;
 import alfaroviquez.david.ui.IU;
 
@@ -18,7 +16,7 @@ public class Controlador {
             interfaz.imprimirMenu();
             opcion = interfaz.leerNumero();
             procesarOpcion(opcion);
-        } while (opcion != 9);
+        } while (opcion != 17);
     }
 
     private void procesarOpcion(int opcion) {
@@ -42,10 +40,34 @@ public class Controlador {
                 listarAdministrativos();
                 break;
             case 7:
+                registrarTexto();
                 break;
             case 8:
+                registrarAudio();
                 break;
             case 9:
+                registrarVideo();
+                break;
+            case 10:
+                registrarOtroMaterial();
+                break;
+            case 11:
+                listarTextos();
+                break;
+            case 12:
+                listarAudios();
+                break;
+            case 13:
+                listarVideos();
+                break;
+            case 14:
+                listarOtroMaterial();
+                break;
+            case 15:
+                break;
+            case 16:
+                break;
+            case 17:
                 break;
             default:
                 interfaz.imprimirMensaje("Opcion invalida");
@@ -118,9 +140,146 @@ public class Controlador {
     }
 
     private void listarAdministrativos() {
-        for (Administrativo unAdministrarivo: gestor.listarAdministrativos()
-             ){
+        for (Administrativo unAdministrarivo : gestor.listarAdministrativos()
+        ) {
             interfaz.imprimirMensaje(unAdministrarivo.toString());
+        }
+    }
+
+    private void registrarTexto() {
+        interfaz.imprimirMensaje("REGISTRAR MATERIAL DE TEXTO");
+        interfaz.imprimirMensaje("Ingrese la signatura (ID): ");
+        int signatura = interfaz.leerNumero();
+        interfaz.imprimirMensaje("Material restringido ? (y/n): ");
+        String respuesta = interfaz.leerMensaje();
+        boolean restringido = false;
+        if (respuesta.equalsIgnoreCase("y")) {
+            restringido = true;
+        } else {
+            restringido = false;
+        }
+        interfaz.imprimirMensaje("Tema del texto: ");
+        String tema = interfaz.leerMensaje();
+        interfaz.imprimirMensaje("Fecha de compra (yyyy-MM-dd): ");
+        String fecha = interfaz.leerMensaje();
+        LocalDate fechaCompra = obtenerFecha(fecha);
+        interfaz.imprimirMensaje("Titulo del texto: ");
+        String titulo = interfaz.leerMensaje();
+        interfaz.imprimirMensaje("Nombre del autor: ");
+        String autor = interfaz.leerMensaje();
+        interfaz.imprimirMensaje("Idioma: ");
+        String idioma = interfaz.leerMensaje();
+        interfaz.imprimirMensaje("Fecha de publicacion (yyyy-MM-dd): ");
+        String publicacion = interfaz.leerMensaje();
+        LocalDate fechapublicacion = obtenerFecha(publicacion);
+        interfaz.imprimirMensaje("Cantidad de paginas: ");
+        int paginas = interfaz.leerNumero();
+        gestor.crearMaterialTexto(signatura, restringido, tema, fechaCompra, titulo, autor, fechapublicacion, paginas, idioma);
+        interfaz.imprimirMensaje("Material registrado con exito");
+    }
+
+    private void listarTextos() {
+        for (Texto unTexto : gestor.listarTextos()
+        ) {
+            interfaz.imprimirMensaje(unTexto.toString());
+        }
+    }
+
+    private void registrarAudio() {
+        interfaz.imprimirMensaje("REGISTRAR MATERIAL DE AUDIO");
+        interfaz.imprimirMensaje("Ingrese la signatura (ID): ");
+        int signatura = interfaz.leerNumero();
+        interfaz.imprimirMensaje("Material restringido ? (y/n): ");
+        String respuesta = interfaz.leerMensaje();
+        boolean restringido = false;
+        if (respuesta.equalsIgnoreCase("y")) {
+            restringido = true;
+        } else {
+            restringido = false;
+        }
+        interfaz.imprimirMensaje("Tema del texto: ");
+        String tema = interfaz.leerMensaje();
+        interfaz.imprimirMensaje("Fecha de compra (yyyy-MM-dd): ");
+        String fecha = interfaz.leerMensaje();
+        LocalDate fechaCompra = obtenerFecha(fecha);
+        interfaz.imprimirMensaje("Idioma: ");
+        String idioma = interfaz.leerMensaje();
+        interfaz.imprimirMensaje("Duracion: ");
+        int duracion = interfaz.leerNumero();
+        interfaz.imprimirMensaje("Formato (CASETE,CD,DVD): ");
+        String formato = interfaz.leerMensaje();
+        gestor.crearMaterialAudio(signatura, restringido, tema, fechaCompra, formato, duracion, idioma);
+        interfaz.imprimirMensaje("Material registrado con exito");
+    }
+
+    private void listarAudios() {
+        for (Audio unAudio : gestor.listarAudios()
+        ) {
+            interfaz.imprimirMensaje(unAudio.toString());
+        }
+    }
+    private void registrarVideo(){
+        interfaz.imprimirMensaje("REGISTRAR MATERIAL DE VIDEO");
+        interfaz.imprimirMensaje("Ingrese la signatura (ID): ");
+        int signatura = interfaz.leerNumero();
+        interfaz.imprimirMensaje("Material restringido ? (y/n): ");
+        String respuesta = interfaz.leerMensaje();
+        boolean restringido = false;
+        if (respuesta.equalsIgnoreCase("y")) {
+            restringido = true;
+        } else {
+            restringido = false;
+        }
+        interfaz.imprimirMensaje("Tema del texto: ");
+        String tema = interfaz.leerMensaje();
+        interfaz.imprimirMensaje("Fecha de compra (yyyy-MM-dd): ");
+        String fecha = interfaz.leerMensaje();
+        LocalDate fechaCompra = obtenerFecha(fecha);
+        String idioma = interfaz.leerMensaje();
+        interfaz.imprimirMensaje("Duracion: ");
+        int duracion = interfaz.leerNumero();
+        interfaz.imprimirMensaje("Formato (VHS,VCD,DVD): ");
+        String formato = interfaz.leerMensaje();
+        interfaz.imprimirMensaje("Nombre del director: ");
+        String director = interfaz.leerMensaje();
+        gestor.crearMaterialVideo(signatura,restringido,tema,fechaCompra,formato,duracion,idioma,director);
+        interfaz.imprimirMensaje("Material registrado exitosamente");
+    }
+
+    private void listarVideos(){
+        for (Video unvideo: gestor.listarVideos()
+             ) {
+            interfaz.imprimirMensaje(unvideo.toString());
+        }
+    }
+
+    private void registrarOtroMaterial(){
+        interfaz.imprimirMensaje("REGISTRAR MATERIAL DE VIDEO");
+        interfaz.imprimirMensaje("Ingrese la signatura (ID): ");
+        int signatura = interfaz.leerNumero();
+        interfaz.imprimirMensaje("Material restringido ? (y/n): ");
+        String respuesta = interfaz.leerMensaje();
+        boolean restringido = false;
+        if (respuesta.equalsIgnoreCase("y")) {
+            restringido = true;
+        } else {
+            restringido = false;
+        }
+        interfaz.imprimirMensaje("Tema del texto: ");
+        String tema = interfaz.leerMensaje();
+        interfaz.imprimirMensaje("Fecha de compra (yyyy-MM-dd): ");
+        String fecha = interfaz.leerMensaje();
+        LocalDate fechaCompra = obtenerFecha(fecha);
+        interfaz.imprimirMensaje("Descripcion: ");
+        String descripcion = interfaz.leerMensaje();
+        gestor.crearOtroMaterial(signatura,restringido,tema,fechaCompra,descripcion);
+        interfaz.imprimirMensaje("Material registrado exitosamente");
+    }
+
+    private void listarOtroMaterial(){
+        for (OtroMaterial unMaterial: gestor.listarOtros()
+             ) {
+            interfaz.imprimirMensaje(unMaterial.toString());
         }
     }
 
