@@ -2,17 +2,11 @@ package alfaroviquez.david.bl.entidades;
 
 public class Estudiante extends Persona {
 
-    private String carne;
+
     private String carrera;
     private int creditos;
 
-    public String getCarne() {
-        return carne;
-    }
 
-    public void setCarne(String carne) {
-        this.carne = carne;
-    }
 
     public String getCarrera() {
         return carrera;
@@ -33,9 +27,8 @@ public class Estudiante extends Persona {
     public Estudiante() {
     }
 
-    public Estudiante(String nombre, String apellido, String carne, String carrera, int creditos) {
-        super(nombre, apellido);
-        this.carne = carne;
+    public Estudiante(String nombre, String apellido, String ID, String carrera, int creditos) {
+        super(nombre, apellido, ID);
         this.carrera = carrera;
         this.creditos = creditos;
     }
@@ -43,9 +36,11 @@ public class Estudiante extends Persona {
     @Override
     public String toString() {
         return "Estudiante{" +
-                "carne='" + carne + '\'' +
-                ", carrera='" + carrera + '\'' +
+                "carrera='" + carrera + '\'' +
                 ", creditos=" + creditos +
+                ", nombre='" + nombre + '\'' +
+                ", apellido='" + apellido + '\'' +
+                ", ID='" + ID + '\'' +
                 "} " + super.toString();
     }
 }

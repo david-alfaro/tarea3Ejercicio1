@@ -1,8 +1,18 @@
 package alfaroviquez.david.bl.entidades;
 
 public class Persona {
-    private String nombre;
-    private String apellido;
+    protected String nombre;
+    protected String apellido;
+
+    public String getID() {
+        return ID;
+    }
+
+    public void setID(String ID) {
+        this.ID = ID;
+    }
+
+    protected String ID;
 
     public String getNombre() {
         return nombre;
@@ -23,9 +33,10 @@ public class Persona {
     public Persona() {
     }
 
-    public Persona(String nombre, String apellido) {
+    public Persona(String nombre, String apellido, String ID) {
         this.nombre = nombre;
         this.apellido = apellido;
+        this.ID = ID;
     }
 
     @Override
@@ -33,6 +44,7 @@ public class Persona {
         return "Persona{" +
                 "nombre='" + nombre + '\'' +
                 ", apellido='" + apellido + '\'' +
+                ", ID='" + ID + '\'' +
                 '}';
     }
 }
