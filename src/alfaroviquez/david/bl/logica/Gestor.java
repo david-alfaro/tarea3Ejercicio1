@@ -31,6 +31,7 @@ public class Gestor {
     public List<Estudiante> listarEstudiantes(){
         return Collections.unmodifiableList(this.listaEstudiantes);
     }
+
     public void crearProfesor(String nombre, String apellido, int ID, LocalDate fechaContratacion,String tipocontrato){
         tipoContrato contrato = tipoContrato.valueOf(tipocontrato);
         Profesor nuevoProfesor = new Profesor(nombre,apellido,ID,fechaContratacion,contrato);

@@ -22,18 +22,7 @@ public class IU {
     }
 
     public int leerNumero(){
-        int i=0;
-        boolean noHayError=true;
-        do{
-            try{
-                i=input.nextInt();
-            }catch (InputMismatchException e){
-                output.println("Ingrese una opcion del menu");
-                noHayError=false;
-                input.next();
-            }
-        }while (noHayError);
-        return i;
+       return input.nextInt();
     }
 
     public void imprimirMensaje(String msg){

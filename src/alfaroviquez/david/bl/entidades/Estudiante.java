@@ -41,6 +41,6 @@ public class Estudiante extends Persona {
                 ", nombre='" + nombre + '\'' +
                 ", apellido='" + apellido + '\'' +
                 ", ID='" + ID + '\'' +
-                "} " + super.toString();
+                "} " ;
     }
 }
