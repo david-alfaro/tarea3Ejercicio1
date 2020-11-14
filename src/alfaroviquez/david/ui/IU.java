@@ -25,8 +25,9 @@ public class IU {
         output.println("13. Listar material de video");
         output.println("14. Listar otro tipo de material");
         output.println("15. Crear préstamo");
-        output.println("16. Listar préstamos");
-        output.println("17. Salir");
+        output.println("16. Asignar material a préstamo");
+        output.println("17. Listar préstamos");
+        output.println("18. Salir");
     }
 
     public int leerNumero(){

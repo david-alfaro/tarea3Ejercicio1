@@ -6,6 +6,7 @@ import alfaroviquez.david.ui.IU;
 
 import java.time.LocalDate;
 
+
 public class Controlador {
     private IU interfaz = new IU();
     private Gestor gestor = new Gestor();
@@ -16,7 +17,7 @@ public class Controlador {
             interfaz.imprimirMenu();
             opcion = interfaz.leerNumero();
             procesarOpcion(opcion);
-        } while (opcion != 17);
+        } while (opcion != 18);
     }
 
     private void procesarOpcion(int opcion) {
@@ -64,10 +65,15 @@ public class Controlador {
                 listarOtroMaterial();
                 break;
             case 15:
+                crearPrestamo();
                 break;
             case 16:
+                asignarMaterialaPrestamo();
                 break;
             case 17:
+                listarPrestamos();
+                break;
+            case 18:
                 break;
             default:
                 interfaz.imprimirMensaje("Opcion invalida");
@@ -218,7 +224,8 @@ public class Controlador {
             interfaz.imprimirMensaje(unAudio.toString());
         }
     }
-    private void registrarVideo(){
+
+    private void registrarVideo() {
         interfaz.imprimirMensaje("REGISTRAR MATERIAL DE VIDEO");
         interfaz.imprimirMensaje("Ingrese la signatura (ID): ");
         int signatura = interfaz.leerNumero();
@@ -242,18 +249,18 @@ public class Controlador {
         String formato = interfaz.leerMensaje();
         interfaz.imprimirMensaje("Nombre del director: ");
         String director = interfaz.leerMensaje();
-        gestor.crearMaterialVideo(signatura,restringido,tema,fechaCompra,formato,duracion,idioma,director);
+        gestor.crearMaterialVideo(signatura, restringido, tema, fechaCompra, formato, duracion, idioma, director);
         interfaz.imprimirMensaje("Material registrado exitosamente");
     }
 
-    private void listarVideos(){
-        for (Video unvideo: gestor.listarVideos()
-             ) {
+    private void listarVideos() {
+        for (Video unvideo : gestor.listarVideos()
+        ) {
             interfaz.imprimirMensaje(unvideo.toString());
         }
     }
 
-    private void registrarOtroMaterial(){
+    private void registrarOtroMaterial() {
         interfaz.imprimirMensaje("REGISTRAR MATERIAL DE VIDEO");
         interfaz.imprimirMensaje("Ingrese la signatura (ID): ");
         int signatura = interfaz.leerNumero();
@@ -272,16 +279,76 @@ public class Controlador {
         LocalDate fechaCompra = obtenerFecha(fecha);
         interfaz.imprimirMensaje("Descripcion: ");
         String descripcion = interfaz.leerMensaje();
-        gestor.crearOtroMaterial(signatura,restringido,tema,fechaCompra,descripcion);
+        gestor.crearOtroMaterial(signatura, restringido, tema, fechaCompra, descripcion);
         interfaz.imprimirMensaje("Material registrado exitosamente");
     }
 
-    private void listarOtroMaterial(){
-        for (OtroMaterial unMaterial: gestor.listarOtros()
-             ) {
+    private void listarOtroMaterial() {
+        for (OtroMaterial unMaterial : gestor.listarOtros()
+        ) {
             interfaz.imprimirMensaje(unMaterial.toString());
         }
     }
+
+    private void crearPrestamo() {
+        interfaz.imprimirMensaje("CREAR UN NUEVO PRESTAMO");
+        interfaz.imprimirMensaje("Lista de Estudiantes");
+        listarEstudiantes();
+        interfaz.imprimirMensaje("Lista de Profesores");
+        listarProfesores();
+        interfaz.imprimirMensaje("Lista de Administrativos");
+        listarAdministrativos();
+        interfaz.imprimirMensaje("---------------------------------");
+        interfaz.imprimirMensaje("Ingrese el ID de la persona: ");
+        int id = interfaz.leerNumero();
+        Persona persona = gestor.buscarPersonaPorID(id);
+        interfaz.imprimirMensaje("Ingrese la fecha de devolucion (yyyy-MM-dd): ");
+        String fecha = interfaz.leerMensaje();
+        LocalDate fechaDevolucion = obtenerFecha(fecha);
+        gestor.crearPrestamo(persona, fechaDevolucion);
+        interfaz.imprimirMensaje("Prestamo registrado");
+
+    }
+
+    private void listarPrestamos() {
+        for (Prestamo unPrestamos : gestor.listarPrestamos()) {
+            interfaz.imprimirMensaje(unPrestamos.toString());
+        }
+    }
+
+    private void listarTodosLosMateriales() {
+        for (Material unMaterial : gestor.listarMateriales()
+        ) {
+            interfaz.imprimirMensaje(unMaterial.toString());
+        }
+    }
+
+    private void asignarMaterialaPrestamo()  {
+        interfaz.imprimirMensaje("ASIGNAR MATERIALES A PRESTAMO");
+        listarPrestamos();
+        interfaz.imprimirMensaje("Ingrese el id del prestamo: ");
+        int idPrestamo = interfaz.leerNumero();
+        boolean agregar=true;
+        do{
+            listarTodosLosMateriales();
+            interfaz.imprimirMensaje("Ingrese la signatura del material: ");
+            int signatura = interfaz.leerNumero();
+            try {
+                gestor.asignarMaterialAPrestamo(idPrestamo,signatura);
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+            interfaz.imprimirMensaje("Agregar otro material (y/n)");
+            String respuesta = interfaz.leerMensaje();
+            if(respuesta.equalsIgnoreCase("n")){
+                agregar=false;
+            }
+        }while (agregar);
+
+        interfaz.imprimirMensaje("Material asignado al prestamo "+idPrestamo);
+
+    }
+
 
     private LocalDate obtenerFecha(String fecha) {
         return LocalDate.parse(fecha);

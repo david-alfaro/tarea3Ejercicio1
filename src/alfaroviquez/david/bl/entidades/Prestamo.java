@@ -3,10 +3,21 @@ package alfaroviquez.david.bl.entidades;
 import java.time.LocalDate;
 import java.util.ArrayList;
 
+
 public class Prestamo {
+    private static int numPrestamo = 0;
+    private int id;
     private Persona usuario;
     private ArrayList<Material> listaMateriales;
     private LocalDate fechaDevolucion;
+
+    public int getId() {
+        return this.id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
 
     public Persona getUsuario() {
         return usuario;
@@ -36,6 +47,7 @@ public class Prestamo {
     }
 
     public Prestamo(Persona usuario, ArrayList<Material> listaMateriales, LocalDate fechaDevolucion) {
+        this.id = numPrestamo++;
         this.usuario = usuario;
         this.listaMateriales = listaMateriales;
         this.fechaDevolucion = fechaDevolucion;
@@ -44,9 +56,10 @@ public class Prestamo {
     @Override
     public String toString() {
         return "Prestamo{" +
-                "usuario=" + usuario +
-                ", listaMateriales=" + listaMateriales +
-                ", fechaDevolucion=" + fechaDevolucion +
+                "ID= " + this.id +
+                ", usuario= " + usuario +
+                ", listaMateriales= " + listaMateriales +
+                ", fechaDevolucion= " + fechaDevolucion +
                 '}';
     }
 }

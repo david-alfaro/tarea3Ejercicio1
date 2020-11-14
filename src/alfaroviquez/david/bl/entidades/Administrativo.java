@@ -39,6 +39,6 @@ public class Administrativo extends Persona {
                 ", nombre='" + nombre + '\'' +
                 ", apellido='" + apellido + '\'' +
                 ", ID='" + ID + '\'' +
-                "} " + super.toString();
+                "} ";
     }
 }
