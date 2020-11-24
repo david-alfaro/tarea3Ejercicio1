@@ -33,6 +33,14 @@ public class Estudiante extends Persona {
         this.creditos = creditos;
     }
 
+    public Estudiante(String sourceLines){
+        String[] datos = sourceLines.split(",");
+        this.nombre = datos[0];
+        this.apellido = datos[1];
+        this.ID = Integer.parseInt(datos[2]);
+        this.carrera = datos[3];
+        this.creditos = Integer.parseInt(datos[4]);
+    }
     @Override
     public String toString() {
         return "Estudiante{" +
@@ -42,5 +50,10 @@ public class Estudiante extends Persona {
                 ", apellido='" + apellido + '\'' +
                 ", ID='" + ID + '\'' +
                 "} " ;
+    }
+
+    @Override
+    public String toCSVLine() {
+        return this.nombre+","+this.apellido+","+this.ID+","+this.carrera+","+this.creditos;
     }
 }

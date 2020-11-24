@@ -1,6 +1,8 @@
 package alfaroviquez.david.bl.entidades;
 
-public class Persona {
+import alfaroviquez.david.bl.interfaces.SerializacionCSV;
+
+public abstract class Persona implements SerializacionCSV {
     protected String nombre;
     protected String apellido;
     protected int ID;
@@ -38,6 +40,13 @@ public class Persona {
         this.ID = ID;
     }
 
+    public Persona(String sourceLineas){
+        String[] datos = sourceLineas.split(",");
+        this.nombre = datos[0];
+        this.apellido=datos[1];
+        this.ID = Integer.parseInt(datos[2]);
+    }
+
     @Override
     public String toString() {
         return "Persona{" +
@@ -46,4 +55,6 @@ public class Persona {
                 ", ID='" + ID + '\'' +
                 '}';
     }
+
+
 }

@@ -1,5 +1,6 @@
 package alfaroviquez.david.bl.entidades;
 
+import alfaroviquez.david.bl.tipos.formatoAudio;
 import alfaroviquez.david.bl.tipos.formatoVideo;
 
 import java.time.LocalDate;
@@ -53,6 +54,17 @@ public class Video extends Material {
         this.director = director;
     }
 
+    public Video(String sourceLines){
+        String[] datos = sourceLines.split(",");
+        this.signatura= Integer.parseInt(datos[0]);
+        this.restringido = Boolean.valueOf(datos[1]);
+        this.tema = datos[2];
+        this.fechaCompra = LocalDate.parse(datos[3]);
+        this.formato = formatoVideo.valueOf(datos[4]);
+        this.duracion = Integer.parseInt(datos[5]);
+        this.idioma = datos[6];
+        this.director=datos[7];
+    }
     @Override
     public String toString() {
         return "Video{" +
@@ -65,5 +77,10 @@ public class Video extends Material {
                 ", tema='" + tema + '\'' +
                 ", fechaCompra=" + fechaCompra +
                 "} " + super.toString();
+    }
+
+    @Override
+    public String toCSVLine() {
+        return this.signatura+","+this.restringido+","+this.tema+","+this.fechaCompra+","+this.formato+","+this.duracion+","+this.idioma+","+this.director;
     }
 }

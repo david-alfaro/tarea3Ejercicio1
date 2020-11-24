@@ -5,12 +5,13 @@ import alfaroviquez.david.bl.tipos.formatoAudio;
 import alfaroviquez.david.bl.tipos.formatoVideo;
 import alfaroviquez.david.bl.tipos.tipoContrato;
 import alfaroviquez.david.bl.tipos.tipoNombramiento;
+import alfaroviquez.david.persistencia.*;
 
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
-import java.util.Optional;
+
 
 public class Gestor {
 
@@ -28,15 +29,27 @@ public class Gestor {
     private ArrayList<Prestamo> prestamos = new ArrayList<>();
 
 
+    private ProfesorDAO repositorioProfesores = new ProfesorDAO();
+    private EstudianteDAO repositorioEstudiates = new EstudianteDAO();
+    private AdministrativoDAO repositorioAdministrativos = new AdministrativoDAO();
+
+    private AudioDAO repoMaterialAudio = new AudioDAO();
+    private VideoDAO repoMaterialVideo = new VideoDAO();
+    private TextoDAO repoMaterialTexto = new TextoDAO();
+    private OtroMaterialDAO repoOtros = new OtroMaterialDAO();
+
     public void crearEstudiante(String nombre, String apellido, int ID, String carrera, int creditos) {
         Estudiante nuevoEstudiante = new Estudiante(nombre, apellido, ID, carrera, creditos);
         listaEstudiantes.add(nuevoEstudiante);
         listaPersonas.add(nuevoEstudiante);
+        repositorioEstudiates.save(nuevoEstudiante);
 
     }
 
-    public List<Estudiante> listarEstudiantes() {
-        return Collections.unmodifiableList(this.listaEstudiantes);
+    public List<Persona> listarEstudiantes() {
+
+        //return Collections.unmodifiableList(this.listaEstudiantes);
+        return repositorioEstudiates.findAll();
     }
 
     public void crearProfesor(String nombre, String apellido, int ID, LocalDate fechaContratacion, String tipocontrato) {
@@ -44,10 +57,13 @@ public class Gestor {
         Profesor nuevoProfesor = new Profesor(nombre, apellido, ID, fechaContratacion, contrato);
         listaProfesores.add(nuevoProfesor);
         listaPersonas.add(nuevoProfesor);
+        repositorioProfesores.save(nuevoProfesor);
     }
 
-    public List<Profesor> listarProfesores() {
-        return Collections.unmodifiableList(this.listaProfesores);
+    public List<Persona> listarProfesores() {
+
+        //return Collections.unmodifiableList(this.listaProfesores);
+        return repositorioProfesores.findAll();
     }
 
     public void crearAdministrativo(String nombre, String apellido, int ID, String nombramiento, int horasAsignadas) {
@@ -55,20 +71,25 @@ public class Gestor {
         Administrativo nuevoAdministrativo = new Administrativo(nombre, apellido, ID, tipoNombramiento, horasAsignadas);
         listaAdministrativos.add(nuevoAdministrativo);
         listaPersonas.add(nuevoAdministrativo);
+        repositorioAdministrativos.save(nuevoAdministrativo);
     }
 
-    public List<Administrativo> listarAdministrativos() {
-        return Collections.unmodifiableList(this.listaAdministrativos);
+    public List<Persona> listarAdministrativos() {
+        //return Collections.unmodifiableList(this.listaAdministrativos);
+        return repositorioAdministrativos.findAll();
     }
 
     public void crearMaterialTexto(int signatura, Boolean restringido, String tema, LocalDate fechaCompra, String titulo, String nombreAutor, LocalDate fechaPublicacion, int numeroPaginas, String idioma) {
         Texto nuevoTexto = new Texto(signatura, restringido, tema, fechaCompra, titulo, nombreAutor, fechaPublicacion, numeroPaginas, idioma);
         listaTextos.add(nuevoTexto);
         listaMateriales.add(nuevoTexto);
+        repoMaterialTexto.save(nuevoTexto);
     }
 
-    public List<Texto> listarTextos() {
-        return Collections.unmodifiableList(this.listaTextos);
+    public List<Material> listarTextos() {
+
+        //return Collections.unmodifiableList(this.listaTextos);
+        return repoMaterialTexto.findAll();
     }
 
     public void crearMaterialAudio(int signatura, Boolean restringido, String tema, LocalDate fechaCompra, String formato, int duracion, String idioma) {
@@ -76,10 +97,13 @@ public class Gestor {
         Audio nuevoAudio = new Audio(signatura, restringido, tema, fechaCompra, tipoFormato, duracion, idioma);
         listaAudios.add(nuevoAudio);
         listaMateriales.add(nuevoAudio);
+        repoMaterialAudio.save(nuevoAudio);
     }
 
-    public List<Audio> listarAudios() {
-        return Collections.unmodifiableList(this.listaAudios);
+    public List<Material> listarAudios() {
+
+        //return Collections.unmodifiableList(this.listaAudios);
+        return repoMaterialAudio.findAll();
     }
 
     public void crearMaterialVideo(int signatura, Boolean restringido, String tema, LocalDate fechaCompra, String formato, int duracion, String idioma, String director) {
@@ -87,21 +111,27 @@ public class Gestor {
         Video nuevoVideo = new Video(signatura, restringido, tema, fechaCompra, tipoFormato, duracion, idioma, director);
         listaVideos.add(nuevoVideo);
         listaMateriales.add(nuevoVideo);
+        repoMaterialVideo.save(nuevoVideo);
     }
 
-    public List<Video> listarVideos() {
-        return Collections.unmodifiableList(this.listaVideos);
+    public List<Material> listarVideos() {
+
+        //return Collections.unmodifiableList(this.listaVideos);
+        return repoMaterialVideo.findAll();
     }
 
     public void crearOtroMaterial(int signatura, Boolean restringido, String tema, LocalDate fechaCompra, String descripcion) {
         OtroMaterial nuevoOtro = new OtroMaterial(signatura, restringido, tema, fechaCompra, descripcion);
         listaOtros.add(nuevoOtro);
         listaMateriales.add(nuevoOtro);
+        repoOtros.save(nuevoOtro);
 
     }
 
-    public List<OtroMaterial> listarOtros() {
-        return Collections.unmodifiableList(this.listaOtros);
+    public List<Material> listarOtros() {
+
+        //return Collections.unmodifiableList(this.listaOtros);
+        return repoOtros.findAll();
     }
 
     public List<Material>listarMateriales(){

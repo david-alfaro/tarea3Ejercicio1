@@ -1,10 +1,12 @@
 package alfaroviquez.david.bl.entidades;
 
+import alfaroviquez.david.bl.interfaces.SerializacionCSV;
+
 import java.time.LocalDate;
 import java.util.ArrayList;
 
 
-public class Prestamo {
+public class Prestamo  {
     private static int numPrestamo = 0;
     private int id;
     private Persona usuario;
@@ -62,4 +64,6 @@ public class Prestamo {
                 ", fechaDevolucion= " + fechaDevolucion +
                 '}';
     }
+
+
 }

@@ -36,6 +36,15 @@ public class Profesor extends Persona {
         this.contrato = contrato;
     }
 
+    public Profesor(String sourceLines){
+        String[] datos = sourceLines.split(",");
+        this.nombre = datos[0];
+        this.apellido = datos[1];
+        this.ID = Integer.parseInt(datos[2]);
+        this.contrato = tipoContrato.valueOf(datos[3]);
+        this.fechaContratacion = LocalDate.parse(datos[4]);
+
+    }
     @Override
     public String toString() {
         return "Profesor{" +
@@ -45,5 +54,10 @@ public class Profesor extends Persona {
                 ", apellido='" + apellido + '\'' +
                 ", ID='" + ID + '\'' +
                 "} ";
+    }
+
+    @Override
+    public String toCSVLine() {
+        return this.nombre+","+this.apellido+","+this.ID+","+this.contrato+","+this.fechaContratacion;
     }
 }

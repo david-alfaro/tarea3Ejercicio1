@@ -1,5 +1,7 @@
 package alfaroviquez.david.bl.entidades;
 
+import alfaroviquez.david.bl.tipos.formatoAudio;
+
 import java.time.LocalDate;
 
 public class Texto extends Material{
@@ -61,6 +63,19 @@ public class Texto extends Material{
         this.idioma = idioma;
     }
 
+    public Texto(String sourceLines){
+        String[] datos = sourceLines.split(",");
+        this.signatura= Integer.parseInt(datos[0]);
+        this.restringido = Boolean.valueOf(datos[1]);
+        this.tema = datos[2];
+        this.fechaCompra = LocalDate.parse(datos[3]);
+        this.titulo = datos[4];
+        this.nombreAutor = datos[5];
+        this.fechaPublicacion = LocalDate.parse(datos[6]);
+        this.numeroPaginas = Integer.parseInt(datos[7]);
+        this.idioma = datos[8];
+    }
+
     @Override
     public String toString() {
         return "Texto{" +
@@ -74,5 +89,10 @@ public class Texto extends Material{
                 ", tema='" + tema + '\'' +
                 ", fechaCompra=" + fechaCompra +
                 "} " + super.toString();
+    }
+
+    @Override
+    public String toCSVLine() {
+        return this.signatura+","+this.restringido+","+this.tema+","+this.fechaCompra+","+this.titulo+","+this.nombreAutor+","+this.fechaPublicacion+","+this.numeroPaginas+","+this.idioma;
     }
 }

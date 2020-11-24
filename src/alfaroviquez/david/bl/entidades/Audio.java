@@ -43,6 +43,16 @@ public class Audio extends Material {
         this.idioma = idioma;
     }
 
+    public Audio(String sourceLines){
+        String[] datos = sourceLines.split(",");
+        this.signatura= Integer.parseInt(datos[0]);
+        this.restringido = Boolean.valueOf(datos[1]);
+        this.tema = datos[2];
+        this.fechaCompra = LocalDate.parse(datos[3]);
+        this.formato = formatoAudio.valueOf(datos[4]);
+        this.duracion = Integer.parseInt(datos[5]);
+        this.idioma = datos[6];
+    }
     @Override
     public String toString() {
         return "Audio{" +
@@ -54,5 +64,10 @@ public class Audio extends Material {
                 ", tema='" + tema + '\'' +
                 ", fechaCompra=" + fechaCompra +
                 "} " + super.toString();
+    }
+
+    @Override
+    public String toCSVLine() {
+        return this.signatura+","+this.restringido+","+this.tema+","+this.fechaCompra+","+this.formato+","+this.duracion+","+this.idioma;
     }
 }

@@ -1,8 +1,10 @@
 package alfaroviquez.david.bl.entidades;
 
+import alfaroviquez.david.bl.interfaces.SerializacionCSV;
+
 import java.time.LocalDate;
 
-public abstract class Material {
+public abstract class Material implements SerializacionCSV {
     protected int signatura;
     protected Boolean restringido;
     protected String tema;
@@ -59,4 +61,6 @@ public abstract class Material {
                 ", fechaCompra=" + fechaCompra +
                 '}';
     }
+
+
 }

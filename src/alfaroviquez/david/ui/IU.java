@@ -27,7 +27,7 @@ public class IU {
         output.println("15. Crear préstamo");
         output.println("16. Asignar material a préstamo");
         output.println("17. Listar préstamos");
-        output.println("18. Salir");
+        output.println("0. Salir");
     }
 
     public int leerNumero(){

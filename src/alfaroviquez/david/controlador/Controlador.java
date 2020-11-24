@@ -17,7 +17,7 @@ public class Controlador {
             interfaz.imprimirMenu();
             opcion = interfaz.leerNumero();
             procesarOpcion(opcion);
-        } while (opcion != 18);
+        } while (opcion != 0);
     }
 
     private void procesarOpcion(int opcion) {
@@ -73,7 +73,7 @@ public class Controlador {
             case 17:
                 listarPrestamos();
                 break;
-            case 18:
+            case 0:
                 break;
             default:
                 interfaz.imprimirMensaje("Opcion invalida");
@@ -97,9 +97,9 @@ public class Controlador {
     }
 
     private void listarEstudiantes() {
-        for (Estudiante unEstudiante : gestor.listarEstudiantes()
+        for (Persona unEstudiante : gestor.listarEstudiantes()
         ) {
-            interfaz.imprimirMensaje(unEstudiante.toString());
+            interfaz.imprimirMensaje(unEstudiante.toCSVLine());
 
         }
     }
@@ -122,9 +122,9 @@ public class Controlador {
     }
 
     private void listarProfesores() {
-        for (Profesor unProfesor : gestor.listarProfesores()
+        for (Persona unProfesor : gestor.listarProfesores()
         ) {
-            interfaz.imprimirMensaje(unProfesor.toString());
+            interfaz.imprimirMensaje(unProfesor.toCSVLine());
         }
     }
 
@@ -146,9 +146,9 @@ public class Controlador {
     }
 
     private void listarAdministrativos() {
-        for (Administrativo unAdministrarivo : gestor.listarAdministrativos()
+        for (Persona unAdministrarivo : gestor.listarAdministrativos()
         ) {
-            interfaz.imprimirMensaje(unAdministrarivo.toString());
+            interfaz.imprimirMensaje(unAdministrarivo.toCSVLine());
         }
     }
 
@@ -185,9 +185,9 @@ public class Controlador {
     }
 
     private void listarTextos() {
-        for (Texto unTexto : gestor.listarTextos()
+        for (Material unTexto : gestor.listarTextos()
         ) {
-            interfaz.imprimirMensaje(unTexto.toString());
+            interfaz.imprimirMensaje(unTexto.toCSVLine());
         }
     }
 
@@ -219,9 +219,9 @@ public class Controlador {
     }
 
     private void listarAudios() {
-        for (Audio unAudio : gestor.listarAudios()
+        for (Material unAudio : gestor.listarAudios()
         ) {
-            interfaz.imprimirMensaje(unAudio.toString());
+            interfaz.imprimirMensaje(unAudio.toCSVLine());
         }
     }
 
@@ -254,9 +254,9 @@ public class Controlador {
     }
 
     private void listarVideos() {
-        for (Video unvideo : gestor.listarVideos()
+        for (Material unvideo : gestor.listarVideos()
         ) {
-            interfaz.imprimirMensaje(unvideo.toString());
+            interfaz.imprimirMensaje(unvideo.toCSVLine());
         }
     }
 
@@ -284,9 +284,9 @@ public class Controlador {
     }
 
     private void listarOtroMaterial() {
-        for (OtroMaterial unMaterial : gestor.listarOtros()
+        for (Material unMaterial : gestor.listarOtros()
         ) {
-            interfaz.imprimirMensaje(unMaterial.toString());
+            interfaz.imprimirMensaje(unMaterial.toCSVLine());
         }
     }
 
